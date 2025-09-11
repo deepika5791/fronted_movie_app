@@ -1,0 +1,12 @@
+.DeleteAllMovies {
+  position: absolute;
+  bottom: 90px;
+  left: 300px;
+  width: 500px;
+  height: 50px;
+  font-family: 'Times New Roman', Times, serif;
+  background-color:#c5111f ;
+  font-size: 20px;
+  color: white;
+  border: none;
+}

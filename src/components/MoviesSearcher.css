@@ -1,0 +1,16 @@
+.searcher_Container{
+    display: flex;
+    justify-content: right;
+    margin-right: 65px;
+
+}
+
+.all_Movies_Searcher {
+  width: 500px;
+  height: 50px;
+  border-radius: 10px;
+  padding-left: 13px;
+  font-size: 16px;
+  
+
+}

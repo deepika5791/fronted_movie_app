@@ -1,0 +1,41 @@
+.all_movie_containerr {
+  height: 400px;
+  width: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #ccc;
+  padding-right: 10px;
+  margin: 300px;
+}
+
+.all-dataa {
+  margin-left: 340px;
+}
+
+table {
+  position: relative;
+  right: 340px;
+  border: 1px solid black;
+  width: 500px;
+  border-collapse: collapse;
+}
+td {
+  padding: 18px;
+  border: 1px solid black;
+}
+.single {
+  list-style-type: none;
+}
+.list {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: black;
+}
+li {
+  list-style-type: none;
+}
+.No_MovieData {
+  position: relative;
+  right: 150px;
+  top: 150px;
+  font-size: 25px;
+}

@@ -1,0 +1,15 @@
+.delete_Movie_btn {
+  color: white;
+  background-color:#c5111f ;
+  padding: 5px;
+  width: 180px;
+  height: 40px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+  font-family: "Times New Roman", Times, serif;
+  border: none;
+  margin: 30px;
+
+}
