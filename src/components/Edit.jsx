@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Edit.css";
-import axios from "axios";
+import Update from "./Update";
 
 const Edit = ({ movie, onSuccess }) => {
   const [form, setmovies] = useState({
@@ -9,8 +9,8 @@ const Edit = ({ movie, onSuccess }) => {
     year: movie.year || "",
     duration: movie.duration || "",
     rating: movie.rating || "",
-    genre: movie.genre ? movie.genre.join(" ,") : "",
-    cast: movie.cast ? movie.cast.join(" ,") : "",
+    genre: movie.genre ? movie.genre.join(", ") : "",
+    cast: movie.cast ? movie.cast.join(", ") : "",
     poster: movie.poster || "",
     trailer: movie.trailer || "",
     trailerThumbnail: movie.trailerThumbnail || "",
@@ -20,25 +20,8 @@ const Edit = ({ movie, onSuccess }) => {
     setmovies({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handlerPatch = async (e) => {
-    e.preventDefault();
-
-    const fieldSets = { ...form };
-    if (fieldSets.genre)
-      fieldSets.genre = fieldSets.genre.split(",").map((g) => g.trim());
-    if (fieldSets.cast)
-      fieldSets.cast = fieldSets.cast.split(",").map((c) => c.trim());
-
-    try {
-      await axios.patch(`http://localhost:5000/movies/${movie.id}`, fieldSets);
-      onSuccess();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
-    <form onSubmit={handlerPatch}>
+    <form>
       <div className="new-container">
         <div className="column_1">
           <label>Title:</label>
@@ -133,11 +116,7 @@ const Edit = ({ movie, onSuccess }) => {
             value={form.trailerThumbnail}
           />
 
-          <div className="btn">
-            <button type="submit" className="Update_Movie">
-              Update
-            </button>
-          </div>
+          <Update movie={movie} form={form} onSuccess={onSuccess} />
         </div>
       </div>
     </form>
