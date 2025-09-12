@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Edit from "./Edit";
-import Delete from "./Delete";
 import { useParams } from "react-router-dom";
 import "./AllMovies.css";
-import NewMovie from "../pages/NewMovie";
-import MovieStats from "./MovieStats";
-import DeleteAllMovies from "./DeleteAllMovies";
-
+import Delete from "../Delete/Delete";
+import NewMovie from "../../pages/NewMovie/NewMovie";
+import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
+import Edit from "../Edit/Edit";
+import MovieStats from "../MovieStats/MovieStats";
 const AllMovies = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Edit.css";
-import Update from "./Update";
+import Update from "../Update/Update";
 
 const Edit = ({ movie, onSuccess }) => {
   const [form, setmovies] = useState({

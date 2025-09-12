@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "./components/Navbar";
-import AllMovies from "./components/AllMovies";
-import MovieList from "./pages/MovieList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import MovieList from "./pages/MovieList/MovieList";
+import AllMovies from "./components/AllMovies/AllMovies";
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
 

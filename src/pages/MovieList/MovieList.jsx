@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./MovieList.css";
-import Filter from "../components/Filter";
-import DeleteAllMovies from "../components/DeleteAllMovies";
+import Filter from "../../components/Filter/Filter";
+import DeleteAllMovies from "../../components/DeleteAllMovies/DeleteAllMovies";
 
 const MovieList = ({ searchQuery }) => {
   const [filteredData, setFilteredData] = useState([]);

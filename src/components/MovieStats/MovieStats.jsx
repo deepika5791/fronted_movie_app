@@ -10,7 +10,7 @@ const MovieStats = () => {
     const fetchStats = async () => {
       try {
         const response = await axios.get("http://localhost:5000/movies/stats");
-        setStats(response.data); // assuming backend returns JSON object with stats
+        setStats(response.data);
         setLoading(false);
       } catch (err) {
         console.error(err);
