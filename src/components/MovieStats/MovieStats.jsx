@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import "./MovieStats.css";
+import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
 const MovieStats = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,20 +28,34 @@ const MovieStats = () => {
   if (!stats) return null;
 
   return (
-    <div className="movie-stats">
-      <h2>Movie Statistics</h2>
-      <ul>
-        <li>
-          <strong>Total Movies:</strong> {stats.totalMovies}
-        </li>
-        <li>
-          <strong>Average Rating:</strong> {stats.averageRating}
-        </li>
-        <li>
-          <strong>Longest Movie:</strong> {stats.maxDuration}
-        </li>
-      </ul>
-    </div>
+    <>
+      <div className="movie-stats">
+        <h2>Movie Statistics</h2>
+        <ul className="stats-grid">
+          <li className="stats-cards">
+            <div className="stats-value">{stats.totalMovies}</div>
+            <div className="stats-label">
+              <strong>Total Movies:</strong>
+            </div>
+          </li>
+          <li className="stats-cards">
+            <div className="stats-value">{stats.averageRating}</div>
+            <div className="stats-label">
+              <strong>Average Rating:</strong>
+            </div>
+          </li>
+          <li className="stats-cards">
+            <div className="stats-value">{stats.maxDuration}</div>
+            <div className="stats-label">
+              <strong>Longest Movie:</strong>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div className="">
+        <DeleteAllMovies />
+      </div>
+    </>
   );
 };
 

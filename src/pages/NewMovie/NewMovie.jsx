@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./NewMovie.css";
 import axios from "axios";
-
+import { FaRegSave } from "react-icons/fa";
 const NewMovie = ({ onSuccess, onCancel }) => {
   const [movie, setMovie] = useState({
     title: "",
@@ -60,40 +60,47 @@ const NewMovie = ({ onSuccess, onCancel }) => {
     <form onSubmit={handleSubmit}>
       <div className="new-containers">
         <div className="column_1">
-          <label>Title:</label>
           <input
+            required
+            placeholder="title"
             type="text"
             name="title"
             value={movie.title}
             onChange={handleChanges}
           />
           <br />
-          <label>Director:</label>
           <input
+            required
+            placeholder="Director"
             type="text"
             name="director"
             value={movie.director}
             onChange={handleChanges}
           />
           <br />
-          <label>Year:</label>
+
           <input
+            required
+            placeholder="year"
             type="text"
             name="year"
             value={movie.year}
             onChange={handleChanges}
           />
           <br />
-          <label>Duration:</label>
+
           <input
-            type="text"
+            required
+            placeholder="Duration"
             name="duration"
             value={movie.duration}
             onChange={handleChanges}
           />
           <br />
-          <label>Rating:</label>
+
           <input
+            required
+            placeholder="Rating"
             type="text"
             name="rating"
             value={movie.rating}
@@ -102,42 +109,49 @@ const NewMovie = ({ onSuccess, onCancel }) => {
         </div>
 
         <div className="colmun_2">
-          <label>Genre:</label>
           <input
+            required
+            placeholder="Genre"
             type="text"
             name="genre"
             value={movie.genre}
             onChange={handleChanges}
-            placeholder="Separate with commas"
           />
           <br />
-          <label>Cast:</label>
+
           <input
+            required
+            placeholder="Cast"
             type="text"
             name="cast"
             value={movie.cast}
             onChange={handleChanges}
-            placeholder="Separate with commas"
           />
           <br />
-          <label>Poster URL:</label>
+
           <input
+            required
+            placeholder="Poster"
             type="text"
             name="poster"
             value={movie.poster}
             onChange={handleChanges}
           />
           <br />
-          <label>Trailer URL:</label>
+
           <input
+            required
+            placeholder="Trailer"
             type="text"
             name="trailer"
             value={movie.trailer}
             onChange={handleChanges}
           />
           <br />
-          <label>Trailer Thumbnail:</label>
+
           <input
+            required
+            placeholder="TrailerThumbnail"
             type="text"
             name="trailerThumbnail"
             value={movie.trailerThumbnail}
@@ -146,20 +160,22 @@ const NewMovie = ({ onSuccess, onCancel }) => {
           <br />
 
           <div className="btn">
-            <button type="submit" className="submit">
-              Create
-            </button>
-
-            <button
-              type="button"
-              className="cancel"
-              onClick={() => {
-                if (onCancel) onCancel();
-              }}
-              style={{ marginLeft: "10px", fontSize: "20px" }}
-            >
-              Cancel
-            </button>
+            <div className="btns">
+              <button type="submit" className="submit">
+                <FaRegSave /> Create
+              </button>
+            </div>
+            <div className="btn1">
+              <button
+                type="button"
+                className="cancel"
+                onClick={() => {
+                  if (onCancel) onCancel();
+                }}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       </div>

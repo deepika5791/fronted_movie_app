@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import MovieList from "./pages/MovieList/MovieList";
+import Header from "./components/Header/Header";
+import MovieStats from "./components/MovieStats/MovieStats";
 import AllMovies from "./components/AllMovies/AllMovies";
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div>
+      <Header />
       <Navbar onSearch={setSearchQuery} />
       <Router>
         <div className="container">
@@ -21,6 +24,7 @@ const App = () => {
           </div>
         </div>
       </Router>
+      <MovieStats />
     </div>
   );
 };

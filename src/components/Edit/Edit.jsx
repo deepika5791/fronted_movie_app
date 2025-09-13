@@ -26,6 +26,7 @@ const Edit = ({ movie, onSuccess }) => {
         <div className="column_1">
           <label>Title:</label>
           <input
+            placeholder="Title"
             type="text"
             name="title"
             className="title"
@@ -35,6 +36,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Director:</label>
           <input
+            placeholder="Director"
             type="text"
             name="director"
             className="director"
@@ -44,6 +46,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Year:</label>
           <input
+            placeholder="year"
             type="text"
             name="year"
             className="year"
@@ -53,6 +56,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Duration:</label>
           <input
+            placeholder="Duration"
             type="text"
             name="duration"
             className="duration"
@@ -62,6 +66,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Rating:</label>
           <input
+            placeholder="Rating"
             type="text"
             name="rating"
             className="rating"
@@ -73,6 +78,7 @@ const Edit = ({ movie, onSuccess }) => {
         <div className="colmun_2">
           <label>Genre:</label>
           <input
+            placeholder="Genre"
             type="text"
             name="genre"
             className="genre"
@@ -82,6 +88,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Cast:</label>
           <input
+            placeholder="Cast"
             type="text"
             name="cast"
             className="cast"
@@ -91,6 +98,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Poster:</label>
           <input
+            placeholder="Poster"
             type="text"
             name="poster"
             className="poster"
@@ -100,6 +108,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Trailer:</label>
           <input
+            placeholder="Trailer"
             type="text"
             name="trailer"
             className="trailer"
@@ -109,6 +118,7 @@ const Edit = ({ movie, onSuccess }) => {
 
           <label>Trailer Thumbnail:</label>
           <input
+            placeholder="TrailerThumbnail"
             type="text"
             name="trailerThumbnail"
             className="trailerThumbnail"

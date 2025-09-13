@@ -6,7 +6,8 @@ import Delete from "../Delete/Delete";
 import NewMovie from "../../pages/NewMovie/NewMovie";
 import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
 import Edit from "../Edit/Edit";
-import MovieStats from "../MovieStats/MovieStats";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import { MdModeEdit } from "react-icons/md";
 const AllMovies = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -42,6 +43,21 @@ const AllMovies = () => {
     setData((prev) => prev.filter((movie) => movie.id !== id));
   };
 
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating / 2);
+    return (
+      <>
+        {Array.from({ length: 5 }, (_, i) =>
+          i < fullStars ? (
+            <FaStar key={i} color="gold" />
+          ) : (
+            <FaRegStar key={i} color="gold" />
+          )
+        )}
+      </>
+    );
+  };
+
   return (
     <div className="all_movie_container">
       <DeleteAllMovies onDeleted={() => setData([])} />
@@ -59,21 +75,39 @@ const AllMovies = () => {
                 />
               ) : (
                 <>
-                  <h4>Id: {movie.id}</h4>
-                  <h3>Title: {movie.title}</h3>
-                  <h4>Rating: {movie.rating}</h4>
-                  <h4>Year: {movie.year}</h4>
-                  <h4>Genres: {movie.genre.join(", ")}</h4>
-                  <h4>Cast: {movie.cast.join(", ")}</h4>
-                  <h5>Director: {movie.director}</h5>
-                  <MovieStats />
+                  <h4 class="movies_id">Id: {movie.id}</h4>
+                  <h3 className="Movie_Title">Title: {movie.title}</h3>
+
+                  <h4 className="Movie_Rating">
+                    <div className="ratingNumbers">({movie.rating})</div>
+                    <div className="rating_stars">
+                      {renderStars(movie.rating)}
+                    </div>
+                  </h4>
+                  <div className="all_Movie_Section">
+                    <div className="movie-item">
+                      <div className="Movie_labels">Year</div>
+                      <h4 className="box">{movie.year}</h4>
+                    </div>
+                    <div className="movie-item">
+                      <div className="Movie_labels">Genre</div>
+                      <h4 className="box">{movie.genre.join(", ")}</h4>
+                    </div>
+                    <div className="movie-item">
+                      <div className="Movie_labels">Cast</div>
+                      <h4 className="box">{movie.cast.join(", ")}</h4>
+                    </div>
+                    <div className="movie-item">
+                      <div className="Movie_labels">Director</div>
+                      <h5 className="box">Director: {movie.director}</h5>
+                    </div>
+                  </div>
+
                   <div className="movie-buttons">
                     <button onClick={() => setEditData(movie)} className="Edit">
-                      Edit
+                      <MdModeEdit /> Edit
                     </button>
-
                     <Delete id={movie.id} onDelete={handleDelete} />
-
                     <button
                       onClick={() => setShowNewMovie(true)}
                       className="Create"
@@ -86,7 +120,9 @@ const AllMovies = () => {
             </li>
           ))
         ) : (
-          <p className="No_movieData">No movies found.</p>
+          <div className="no_movie-found">
+            <p className="No_movieData">No movies found.</p>
+          </div>
         )}
 
         {showNewMovie && (

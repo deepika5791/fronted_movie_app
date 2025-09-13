@@ -36,6 +36,7 @@ const Update = ({ movie, form, onSuccess }) => {
     <div className="btn">
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
+      
       <button type="submit" onClick={handleUpdate} className="Update_Movie">
         Update
       </button>

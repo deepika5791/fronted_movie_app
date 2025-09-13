@@ -1,13 +1,19 @@
-.all_movie_containerr {
-  height: 400px;
-  width: 500px;
+/* .all_movie_containerr {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 600px;
   overflow-y: auto;
-  overflow-x: hidden;
-  border: 1px solid #ccc;
-  padding-right: 10px;
-  margin: 300px;
+  width: 420px;
+  border-radius: 30px;
+  position: relative;
+  bottom: 230px;
 }
-
+.div {
+  display: block;
+  box-sizing: border-box;
+}
 .all-dataa {
   margin-left: 340px;
 }
@@ -15,27 +21,111 @@
 table {
   position: relative;
   right: 340px;
-  border: 1px solid black;
-  width: 500px;
-  border-collapse: collapse;
+  width: 350px;
+  border-collapse: separate;
 }
 td {
   padding: 18px;
-  border: 1px solid black;
+  border: none;
+}
+td {
+  border: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+}
+td:active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+td:hover {
+  border: #667eea;
+  transform: translateX(5px);
 }
 .single {
   list-style-type: none;
 }
 .list {
-  font-family: Georgia, "Times New Roman", Times, serif;
   color: black;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+.list:active {
+  color: white;
 }
 li {
   list-style-type: none;
 }
+
 .No_MovieData {
   position: relative;
   right: 150px;
   top: 150px;
   font-size: 25px;
+} */
+.all_movie_containerr {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  overflow-y: auto;
+  width: 420px;
+  border-radius: 30px;
+  position: relative;
+  bottom: 230px;
+}
+
+.all-dataa {
+  margin-left: 0; /* Adjusted for proper alignment */
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+}
+
+td {
+  /* padding: 12px; */
+  border: none;
+  /* background: rgba(102, 126, 234, 0.1); */
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+td:hover {
+  transform: translateX(5px);
+  border: 1px solid #667eea;
+}
+
+.single {
+  list-style-type: none;
+  margin-bottom: 12px;
+}
+
+.list {
+  display: block;
+  color:  #333333;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.list.active {
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.No_MovieData {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 50px;
 }

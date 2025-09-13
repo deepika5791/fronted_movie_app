@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Delete.css";
 import axios from "axios";
+import Edit from "../Edit/Edit";
+import { MdDelete } from "react-icons/md";
 const Delete = ({ id, onDelete }) => {
   const handleDelete = async () => {
     try {
@@ -16,6 +18,7 @@ const Delete = ({ id, onDelete }) => {
   return (
     <>
       <button onClick={handleDelete} className="delete_Movie_btn">
+        <MdDelete />
         Delete
       </button>
     </>

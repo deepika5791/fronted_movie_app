@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
-import MoviesSearcher from "../MoviesSearcher/MoviesSearcher"
+import MoviesSearcher from "../MoviesSearcher/MoviesSearcher";
+
 const Navbar = ({ onSearch }) => {
   return (
     <div>
