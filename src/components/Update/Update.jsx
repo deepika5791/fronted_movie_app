@@ -18,7 +18,7 @@ const Update = ({ movie, form, onSuccess }) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/movies/${movie.id}`,
+        `https://movieapi-1-txwt.onrender.com/movies/${movie.id}`,
         fieldSets
       );
       setSuccess("Movie updated successfully!");

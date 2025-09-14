@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 const Delete = ({ id, onDelete }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/movies/${id}`);
+      await axios.delete(`https://movieapi-1-txwt.onrender.com/movies/${id}`);
       onDelete(id);
 
       window.dispatchEvent(new CustomEvent("movieDeleted", { detail: { id } }));

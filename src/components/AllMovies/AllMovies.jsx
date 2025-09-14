@@ -18,8 +18,8 @@ const AllMovies = () => {
   const fetchData = async () => {
     try {
       const url = id
-        ? `http://localhost:5000/movies/${id}`
-        : `http://localhost:5000/movies`;
+        ? `https://movieapi-1-txwt.onrender.com/movies/${id}`
+        : `https://movieapi-1-txwt.onrender.com/movies`;
       const response = await axios.get(url);
       const movies = Array.isArray(response.data.data)
         ? response.data.data
