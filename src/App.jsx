@@ -7,7 +7,7 @@ import MovieStats from "./components/MovieStats/MovieStats";
 import AllMovies from "./components/AllMovies/AllMovies";
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [showNewMovie, setShowNewMovie] = useState(false);
   return (
     <div>
       <Header />
@@ -19,7 +19,13 @@ const App = () => {
           </div>
           <div className="right">
             <Routes>
-              <Route path="/movie/:id" element={<AllMovies />} />
+              <Route
+                path="/movie/:id"
+                element={
+                  <AllMovies
+                  />
+                }
+              />
             </Routes>
           </div>
         </div>

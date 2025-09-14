@@ -1,71 +1,3 @@
-/* .all_movie_containerr {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  height: 600px;
-  overflow-y: auto;
-  width: 420px;
-  border-radius: 30px;
-  position: relative;
-  bottom: 230px;
-}
-.div {
-  display: block;
-  box-sizing: border-box;
-}
-.all-dataa {
-  margin-left: 340px;
-}
-
-table {
-  position: relative;
-  right: 340px;
-  width: 350px;
-  border-collapse: separate;
-}
-td {
-  padding: 18px;
-  border: none;
-}
-td {
-  border: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background: rgba(102, 126, 234, 0.1);
-  border-radius: 12px;
-}
-td:active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-td:hover {
-  border: #667eea;
-  transform: translateX(5px);
-}
-.single {
-  list-style-type: none;
-}
-.list {
-  color: black;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  font-family: sans-serif;
-  font-weight: 600;
-}
-.list:active {
-  color: white;
-}
-li {
-  list-style-type: none;
-}
-
-.No_MovieData {
-  position: relative;
-  right: 150px;
-  top: 150px;
-  font-size: 25px;
-} */
 .all_movie_containerr {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -80,7 +12,7 @@ li {
 }
 
 .all-dataa {
-  margin-left: 0; /* Adjusted for proper alignment */
+  margin-left: 0; 
   padding: 0;
 }
 
@@ -90,9 +22,7 @@ table {
 }
 
 td {
-  /* padding: 12px; */
   border: none;
-  /* background: rgba(102, 126, 234, 0.1); */
   border-radius: 12px;
   transition: all 0.3s ease;
 }

@@ -3,11 +3,12 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./AllMovies.css";
 import Delete from "../Delete/Delete";
-import NewMovie from "../../pages/NewMovie/NewMovie";
-import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
 import Edit from "../Edit/Edit";
+import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
+import NewMovie from "../../pages/NewMovie/NewMovie";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
+
 const AllMovies = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -31,11 +32,16 @@ const AllMovies = () => {
 
   useEffect(() => {
     fetchData();
+
     const handleMoviesDeleted = () => setData([]);
     window.addEventListener("moviesDeleted", handleMoviesDeleted);
 
+    const handleCreateMovie = () => setShowNewMovie(true);
+    window.addEventListener("openNewMovieForm", handleCreateMovie);
+
     return () => {
       window.removeEventListener("moviesDeleted", handleMoviesDeleted);
+      window.removeEventListener("openNewMovieForm", handleCreateMovie);
     };
   }, [id]);
 
@@ -68,14 +74,18 @@ const AllMovies = () => {
               {edit && edit.id === movie.id ? (
                 <Edit
                   movie={movie}
-                  onSuccess={() => {
-                    fetchData();
+                  onSuccess={(updatedMovie) => {
+                    setData((prev) =>
+                      prev.map((m) =>
+                        m.id === updatedMovie.id ? updatedMovie : m
+                      )
+                    );
                     setEditData(null);
                   }}
                 />
               ) : (
                 <>
-                  <h4 class="movies_id">Id: {movie.id}</h4>
+                  <h4 className="movies_id">Id: {movie.id}</h4>
                   <h3 className="Movie_Title">Title: {movie.title}</h3>
 
                   <h4 className="Movie_Rating">
@@ -84,6 +94,7 @@ const AllMovies = () => {
                       {renderStars(movie.rating)}
                     </div>
                   </h4>
+
                   <div className="all_Movie_Section">
                     <div className="movie-item">
                       <div className="Movie_labels">Year</div>
@@ -99,7 +110,7 @@ const AllMovies = () => {
                     </div>
                     <div className="movie-item">
                       <div className="Movie_labels">Director</div>
-                      <h5 className="box">Director: {movie.director}</h5>
+                      <h5 className="box">{movie.director}</h5>
                     </div>
                   </div>
 
@@ -108,12 +119,6 @@ const AllMovies = () => {
                       <MdModeEdit /> Edit
                     </button>
                     <Delete id={movie.id} onDelete={handleDelete} />
-                    <button
-                      onClick={() => setShowNewMovie(true)}
-                      className="Create"
-                    >
-                      Create
-                    </button>
                   </div>
                 </>
               )}
@@ -125,11 +130,11 @@ const AllMovies = () => {
           </div>
         )}
 
+        {/* ✅ NewMovie form still renders inside AllMovies */}
         {showNewMovie && (
           <li>
             <NewMovie
               onSuccess={() => {
-                fetchData();
                 setShowNewMovie(false);
               }}
               onCancel={() => setShowNewMovie(false)}

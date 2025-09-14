@@ -13,7 +13,22 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   height: 300px;
 }
-div {
-  display: block;
-  unicode-bidi: isolate;
+
+.Create {
+  position: absolute;
+  left: 65px;
+  top: 79%;
+  bottom: 115%;
+  right: 119%;
+  color: white;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 5px;
+  width: 220px;
+  height: 44px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+  font-family: "Times New Roman", Times, serif;
+  border: none;
 }

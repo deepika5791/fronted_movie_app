@@ -10,7 +10,7 @@ const DeleteAllMovies = ({ onDeleted }) => {
 
     setLoading(true);
     try {
-      await axios.delete("http://localhost:5000/movies");
+      await axios.delete(`http://localhost:5000/movies`);
       alert("All movies have been deleted!");
 
       window.dispatchEvent(new Event("moviesDeleted"));

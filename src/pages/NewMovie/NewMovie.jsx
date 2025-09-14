@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./NewMovie.css";
 import axios from "axios";
 import { FaRegSave } from "react-icons/fa";
+
 const NewMovie = ({ onSuccess, onCancel }) => {
   const [movie, setMovie] = useState({
     title: "",
@@ -35,7 +36,18 @@ const NewMovie = ({ onSuccess, onCancel }) => {
     };
 
     try {
-      await axios.post("http://localhost:5000/movies", payload);
+      const response = await axios.post(
+        "http://localhost:5000/movies",
+        payload
+      );
+      const newMovie = response.data.data || response.data;
+
+      // Dispatch a global event so MovieList knows about it
+      window.dispatchEvent(
+        new CustomEvent("movieCreated", { detail: { movie: newMovie } })
+      );
+
+      if (onSuccess) onSuccess(newMovie);
 
       setMovie({
         title: "",
@@ -49,8 +61,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
         trailer: "",
         trailerThumbnail: "",
       });
-
-      if (onSuccess) onSuccess();
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +88,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="year"
@@ -88,7 +97,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="Duration"
@@ -97,7 +105,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="Rating"
@@ -118,7 +125,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="Cast"
@@ -128,7 +134,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="Poster"
@@ -138,7 +143,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="Trailer"
@@ -148,7 +152,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
             onChange={handleChanges}
           />
           <br />
-
           <input
             required
             placeholder="TrailerThumbnail"
@@ -162,17 +165,11 @@ const NewMovie = ({ onSuccess, onCancel }) => {
           <div className="btn">
             <div className="btns">
               <button type="submit" className="submit">
-                <FaRegSave /> Create
+                <FaRegSave /> Save Movie
               </button>
             </div>
             <div className="btn1">
-              <button
-                type="button"
-                className="cancel"
-                onClick={() => {
-                  if (onCancel) onCancel();
-                }}
-              >
+              <button type="button" className="cancel" onClick={onCancel}>
                 Cancel
               </button>
             </div>
