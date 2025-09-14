@@ -15,7 +15,9 @@ const Filter = ({ onFilter }) => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/movies");
+        const res = await axios.get(
+          "https://movieapi-1-txwt.onrender.com/movies"
+        );
         const movies = res.data.data;
 
         setYears([...new Set(movies.map((m) => m.year))]);
@@ -32,10 +34,10 @@ const Filter = ({ onFilter }) => {
   useEffect(() => {
     const fetchFiltered = async () => {
       try {
-        let url = "http://localhost:5000/movies";
+        let url = `https://movieapi-1-txwt.onrender.com/movies`;
 
         if (topN) {
-          url = `http://localhost:5000/movies/top/${topN}`;
+          url = `https://movieapi-1-txwt.onrender.com/movies/top/${topN}`;
         } else {
           const params = [];
           if (selectedYear) params.push(`year=${selectedYear}`);
