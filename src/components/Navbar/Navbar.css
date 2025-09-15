@@ -26,9 +26,29 @@
   width: 220px;
   height: 44px;
   font-size: 20px;
-  font-family: sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   border-radius: 5px;
-  font-family: "Times New Roman", Times, serif;
   border: none;
+}
+
+@media (max-width: 1024px) {
+  .Create {
+    left: 30px;
+    top: 85%;
+    width: 180px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Create {
+    position: static;
+    margin: 1rem auto;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    height: 40px;
+  }
 }

@@ -14,3 +14,16 @@
   cursor: pointer;
   margin-top: 80px;
 }
+@media (max-width: 420px) {
+  .DeleteAllMovies {
+    width: 55%;
+    font-size: 18px;
+    height: 45px;
+    margin-top: 1760px;
+  }
+}
+@media (max-width: 420px) {
+  .delete-all-wrapper {
+    margin-left: 30px;
+  }
+}

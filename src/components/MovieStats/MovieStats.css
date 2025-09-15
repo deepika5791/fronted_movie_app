@@ -1,6 +1,5 @@
 .movie-stats {
   position: relative;
-  bottom: 230px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -9,30 +8,65 @@
   text-align: center;
   height: 25vh;
   margin-top: 50px;
+  bottom: 230px;
 }
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+
 .stats-cards {
   background-color: rgba(102, 126, 234, 0.1);
   padding: 1rem;
   border-radius: 12px;
   list-style-type: none;
 }
+
 .stats-label {
   font-size: 0.9rem;
   color: #6b7280;
 }
+
 .stats-value {
   font-size: 2rem;
   font-weight: 700;
   color: #667eea;
   margin-bottom: 0.3rem;
 }
+
 h2 {
   color: #374151;
   margin-bottom: 1rem;
   font-size: 1.3rem;
+}
+
+@media screen and (max-width: 450px) {
+  .movie-stats {
+    padding: 70px;
+    height: auto;
+    bottom: 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .stats-cards {
+    padding: 0.79rem;
+  }
+
+  .stats-label {
+    font-size: 0.8rem;
+  }
+
+  .stats-value {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
 }

@@ -12,7 +12,7 @@
 }
 
 .all-dataa {
-  margin-left: 0; 
+  margin-left: 0;
   padding: 0;
 }
 
@@ -39,7 +39,7 @@ td:hover {
 
 .list {
   display: block;
-  color:  #333333;
+  color: #333333;
   padding: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -58,4 +58,53 @@ td:hover {
   text-align: center;
   font-size: 25px;
   margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .all_movie_containerr {
+    width: 90%;
+    height: 500px;
+    bottom: 0;
+    padding: 1rem;
+    margin: 2rem auto;
+    overflow-y: auto;
+  }
+
+  .movie_title_list {
+    font-size: 1.2rem;
+  }
+
+  .No_MovieData {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .all_movie_containerr {
+    width: 95%;
+    height: 450px;
+    bottom: 0;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    overflow-y: auto;
+  }
+
+  .list {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .movie_title_list {
+    font-size: 1rem;
+    word-wrap: break-word;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  .No_MovieData {
+    font-size: 18px;
+    margin-top: 20px;
+  }
 }

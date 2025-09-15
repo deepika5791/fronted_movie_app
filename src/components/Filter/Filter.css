@@ -1,17 +1,19 @@
 .filter-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
   align-items: center;
   padding: 5rem 3rem 5rem 4rem;
 }
+
 .filter_group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   position: relative;
-  bottom: 300px;
+  bottom: 300px; 
 }
+
 label {
   font-size: 0.9rem;
   color: #374151;
@@ -28,4 +30,36 @@ select {
   transition: border-color 0.3s ease;
   font-family: sans-serif;
   width: 230px;
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .filter-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+  }
+
+  .filter_group {
+    bottom: 150px;
+  }
+
+  select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .filter_group {
+    bottom: 0;
+  }
+
+  select {
+    width: 100%;
+    font-size: 0.9rem;
+  }
 }

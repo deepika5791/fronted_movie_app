@@ -66,7 +66,10 @@ const AllMovies = () => {
 
   return (
     <div className="all_movie_container">
-      <DeleteAllMovies onDeleted={() => setData([])} />
+      <DeleteAllMovies
+        onDeleted={() => setData([])}
+        className="DeleteAllMovies"
+      />
       <ul className="all-data">
         {data.length > 0 ? (
           data.map((movie) => (
@@ -129,8 +132,6 @@ const AllMovies = () => {
             <p className="No_movieData">No movies found.</p>
           </div>
         )}
-
-        {/* ✅ NewMovie form still renders inside AllMovies */}
         {showNewMovie && (
           <li>
             <NewMovie

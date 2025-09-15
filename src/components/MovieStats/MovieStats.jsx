@@ -2,27 +2,38 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MovieStats.css";
 import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
+
 const MovieStats = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const fetchStats = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await axios.get(
+        "https://movieapi-1-txwt.onrender.com/movies/stats"
+      );
+      setStats(response.data);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch stats.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const response = await axios.get(
-          "https://movieapi-1-txwt.onrender.com/movies/stats"
-        );
-        setStats(response.data);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch stats.");
-        setLoading(false);
-      }
+    fetchStats();
+
+    const handleMoviesDeleted = () => {
+      setStats({ totalMovies: 0, averageRating: 0, maxDuration: 0 });
     };
 
-    fetchStats();
+    window.addEventListener("moviesDeleted", handleMoviesDeleted);
+    return () =>
+      window.removeEventListener("moviesDeleted", handleMoviesDeleted);
   }, []);
 
   if (loading) return <p>Loading stats...</p>;
@@ -54,7 +65,7 @@ const MovieStats = () => {
           </li>
         </ul>
       </div>
-      <div className="">
+      <div className="delete-all-wrapper">
         <DeleteAllMovies />
       </div>
     </>
