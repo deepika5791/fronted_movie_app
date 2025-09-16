@@ -49,7 +49,6 @@ h2 {
   font-size: 1.5rem;
 }
 
-/* Delete All Movies button */
 .DeleteAllMovies {
   width: 100%;
   max-width: 100%;
@@ -71,15 +70,17 @@ h2 {
   background-color: #a50f1a;
 }
 
-/* Mobile responsiveness */
-@media screen and (max-width: 412px) {
+@media screen and (max-width: 1156px) {
   .movie-stats {
     padding: 1.5rem;
     border-radius: 15px;
+    position: relative;
+    bottom: 280px;
+    overflow: hidden;
   }
 
   .stats-grid {
-    grid-template-columns: 1fr; /* single column */
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 

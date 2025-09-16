@@ -9,20 +9,22 @@
 .left {
   flex: 0 0 30%;
   padding: 10px;
-  max-height: 80vh;
+  /* max-height: 80vh; */
   overflow: hidden;
 }
 
 .right {
   flex: 1;
   padding: 10px;
-  max-height: 80vh;
+  /* max-height: 80vh; */
   overflow: hidden;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1156px) {
   .container {
     flex-direction: column;
+    position: relative;
+    bottom: 350px;
   }
 
   .left,

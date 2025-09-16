@@ -33,27 +33,29 @@ select {
   max-width: 100%;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 986px) {
   .filter-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem 2rem 1rem;
     gap: 1rem;
+    position: relative;
+    bottom: 530px;
   }
 
   .filter_group {
     position: static;
     width: 90%;
-    max-width: 300px;
+    max-width: 1300px;
     gap: 0.5rem;
-    margin-bottom: 20px;
   }
 
   select {
     width: 100%;
     font-size: 0.95rem;
     padding: 0.65rem;
+    position: relative;
   }
 
   label {

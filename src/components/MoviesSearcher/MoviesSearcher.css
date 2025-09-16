@@ -14,8 +14,25 @@
   background-color: white;
   font-family: sans-serif;
 }
+
 .all_Movies_Searcher:focus {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+@media (max-width: 986px) {
+  .searcher_Container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .all_Movies_Searcher {
+    position: absolute;
+    width: 80%;
+    font-size: 0.95rem;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+  }
 }
