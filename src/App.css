@@ -1,27 +1,32 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .container {
   display: flex;
-  gap: 20px;
-}
-.left {
-  width: 30%;
-  border-right: 1px solid #ccc;
-  padding-right: 10px;
-}
-.right {
-  width: 70%;
-  padding-left: 10px;
+  align-items: flex-start;
+  width: 100%;
   position: relative;
-  left: 500px;
+  bottom: 210px;
 }
-ul {
-  list-style: none;
-  padding: 0;
-  li {
-    margin: 5px 0;
+
+.left {
+  flex: 0 0 30%;
+  padding: 10px;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.right {
+  flex: 1;
+  padding: 10px;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
   }
 }

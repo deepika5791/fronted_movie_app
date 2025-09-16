@@ -1,20 +1,25 @@
 .movie-stats {
   position: relative;
+  bottom: 200px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 3rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  height: 25vh;
-  margin-top: 50px;
-  bottom: 230px;
+  height: auto;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .stats-cards {
@@ -22,6 +27,8 @@
   padding: 1rem;
   border-radius: 12px;
   list-style-type: none;
+  transition: all 0.3s ease;
+  word-wrap: break-word; /* prevent overflow of text */
 }
 
 .stats-label {
@@ -39,23 +46,45 @@
 h2 {
   color: #374151;
   margin-bottom: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
-@media screen and (max-width: 450px) {
+/* Delete All Movies button */
+.DeleteAllMovies {
+  width: 100%;
+  max-width: 100%;
+  height: 50px;
+  font-family: sans-serif;
+  background-color: #c5111f;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  margin: 2rem auto 0 auto;
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.DeleteAllMovies:hover {
+  background-color: #a50f1a;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 412px) {
   .movie-stats {
-    padding: 70px;
-    height: auto;
-    bottom: 0;
+    padding: 1.5rem;
+    border-radius: 15px;
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 1fr; /* single column */
+    gap: 1rem;
   }
 
   .stats-cards {
-    padding: 0.79rem;
+    padding: 0.8rem;
   }
 
   .stats-label {
@@ -67,6 +96,7 @@ h2 {
   }
 
   h2 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
 }

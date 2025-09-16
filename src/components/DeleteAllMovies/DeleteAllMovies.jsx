@@ -25,7 +25,8 @@ const DeleteAllMovies = ({ onDeleted }) => {
   };
 
   return (
-    <div style={{ margin: "20px 0" }}>
+  
+    <div className="delete-all-wrapper">
       <button
         className="DeleteAllMovies"
         onClick={handleDeleteAll}

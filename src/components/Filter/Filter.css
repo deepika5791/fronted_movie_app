@@ -11,7 +11,7 @@
   flex-direction: column;
   gap: 0.5rem;
   position: relative;
-  bottom: 300px; 
+  bottom: 300px;
 }
 
 label {
@@ -33,33 +33,31 @@ select {
   max-width: 100%;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 420px) {
   .filter-container {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 2rem 1rem;
+    gap: 1rem;
   }
 
   .filter_group {
-    bottom: 150px;
+    position: static;
+    width: 90%;
+    max-width: 300px;
+    gap: 0.5rem;
+    margin-bottom: 20px;
   }
 
   select {
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .filter-container {
-    grid-template-columns: 1fr;
-    padding: 1rem;
+    font-size: 0.95rem;
+    padding: 0.65rem;
   }
 
-  .filter_group {
-    bottom: 0;
-  }
-
-  select {
-    width: 100%;
-    font-size: 0.9rem;
+  label {
+    font-size: 0.85rem;
+    margin-top: 1px;
   }
 }

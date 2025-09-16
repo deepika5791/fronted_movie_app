@@ -66,10 +66,6 @@ const AllMovies = () => {
 
   return (
     <div className="all_movie_container">
-      <DeleteAllMovies
-        onDeleted={() => setData([])}
-        className="DeleteAllMovies"
-      />
       <ul className="all-data">
         {data.length > 0 ? (
           data.map((movie) => (

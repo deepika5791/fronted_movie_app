@@ -42,7 +42,7 @@ const NewMovie = ({ onSuccess, onCancel }) => {
       );
       const newMovie = response.data.data || response.data;
 
-      // Dispatch a global event so MovieList knows about it
+
       window.dispatchEvent(
         new CustomEvent("movieCreated", { detail: { movie: newMovie } })
       );

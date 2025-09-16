@@ -64,10 +64,11 @@ const MovieStats = () => {
             </div>
           </li>
         </ul>
+        <div className="delete-all-wrapper">
+          <DeleteAllMovies />
+        </div>
       </div>
-      <div className="delete-all-wrapper">
-        <DeleteAllMovies />
-      </div>
+     
     </>
   );
 };
