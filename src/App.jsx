@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import MovieList from "./pages/MovieList/MovieList";
 import Header from "./components/Header/Header";
@@ -19,7 +19,7 @@ const App = () => {
       <Router>
         <Navbar
           onSearch={setSearchQuery}
-          onFilterChange={(movies) => setFilteredMovies(movies)}
+          onFilterChange={setFilteredMovies}
           onCreate={() => setShowNewMovie(true)}
         />
 
@@ -29,19 +29,23 @@ const App = () => {
           </div>
           <div className="right">
             <Routes>
+              <Route
+                path="/"
+                element={<div className="placeholder">Select a movie</div>}
+              />
               <Route path="/movie/:id" element={<AllMovies />} />
             </Routes>
           </div>
         </div>
+
         <MovieStats />
-        <div>
-          {showNewMovie && (
-            <NewMovie
-              onSuccess={() => setShowNewMovie(false)}
-              onCancel={() => setShowNewMovie(false)}
-            />
-          )}
-        </div>
+
+        {showNewMovie && (
+          <NewMovie
+            onSuccess={() => setShowNewMovie(false)}
+            onCancel={() => setShowNewMovie(false)}
+          />
+        )}
       </Router>
     </div>
   );

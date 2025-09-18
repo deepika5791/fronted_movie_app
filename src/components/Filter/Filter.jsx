@@ -1,122 +1,177 @@
 import React, { useEffect, useState } from "react";
-import "./Filter.css";
 import axios from "axios";
+import "./Filter.css";
 
 const Filter = ({ onFilter }) => {
+  const [movies, setMovies] = useState([]);
   const [years, setYears] = useState([]);
   const [directors, setDirectors] = useState([]);
+  const [genres, setGenres] = useState([]);
+
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedDirector, setSelectedDirector] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [topN, setTopN] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
-  const [genre, setGenres] = useState([]);
-  const [selectedGenre, setselectedGenre] = useState("");
+
+  // Fetch all movies once
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const res = await axios.get(
           "https://movieapi-1-txwt.onrender.com/movies"
         );
-        const movies = res.data.data;
+        const data = res.data.data || [];
+        setMovies(data);
+        onFilter(data); // initialize filter list
 
-        setYears([...new Set(movies.map((m) => m.year))]);
-        setDirectors([...new Set(movies.map((m) => m.director))]);
-        setGenres([...new Set(movies.map((m) => m.genre))]);
-        onFilter(movies);
+        // Extract unique years
+        const uniqueYears = [...new Set(data.map((m) => m.year))].sort(
+          (a, b) => b - a
+        );
+        setYears(uniqueYears);
+
+        // Extract unique directors
+        const uniqueDirectors = [
+          ...new Set(data.map((m) => m.director)),
+        ].sort();
+        setDirectors(uniqueDirectors);
+
+        // Extract unique genres safely
+        const allGenres = data.flatMap((m) => {
+          if (!m.genre) return [];
+          if (Array.isArray(m.genre)) return m.genre;
+          if (typeof m.genre === "string")
+            return m.genre.split(",").map((g) => g.trim());
+          return [];
+        });
+        setGenres([...new Set(allGenres)].sort());
       } catch (err) {
         console.error(err);
       }
     };
     fetchMovies();
-  }, []);
+  }, [onFilter]);
 
+  // Apply filters locally (no API call)
   useEffect(() => {
-    const fetchFiltered = async () => {
-      try {
-        let url = `https://movieapi-1-txwt.onrender.com/movies`;
+    if (!movies.length) return;
 
-        if (topN) {
-          url = `https://movieapi-1-txwt.onrender.com/movies/top/${topN}`;
-        } else {
-          const params = [];
-          if (selectedYear) params.push(`year=${selectedYear}`);
-          if (selectedDirector) params.push(`director=${selectedDirector}`);
-          if (selectedGenre) params.push(`genre=${selectedGenre}`);
-          if (sortBy) params.push(`by=${sortBy}&order=${sortOrder}`);
+    let filtered = [...movies];
 
-          if (params.length > 0) url += `?${params.join("&")}`;
-        }
+    if (selectedYear) {
+      filtered = filtered.filter(
+        (m) => Number(m.year) === Number(selectedYear)
+      );
+    }
+    if (selectedDirector) {
+      filtered = filtered.filter((m) => m.director === selectedDirector);
+    }
+    if (selectedGenre) {
+      filtered = filtered.filter((m) => {
+        if (!m.genre) return false;
+        const movieGenres = Array.isArray(m.genre)
+          ? m.genre
+          : m.genre.split(",").map((g) => g.trim());
+        return movieGenres.includes(selectedGenre);
+      });
+    }
+    if (topN) {
+      filtered = [...filtered]
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, topN);
+    }
+    if (sortBy) {
+      filtered = [...filtered].sort((a, b) => {
+        if (sortBy === "rating")
+          return sortOrder === "asc"
+            ? a.rating - b.rating
+            : b.rating - a.rating;
+        if (sortBy === "year")
+          return sortOrder === "asc" ? a.year - b.year : b.year - a.year;
+        if (sortBy === "title") return a.title.localeCompare(b.title);
+        return 0;
+      });
+    }
 
-        const res = await axios.get(url);
-        onFilter(res.data.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchFiltered();
-  }, [selectedYear, selectedDirector, topN, sortBy, sortOrder, selectedGenre]);
+    onFilter(filtered);
+  }, [
+    selectedYear,
+    selectedDirector,
+    selectedGenre,
+    topN,
+    sortBy,
+    sortOrder,
+    movies,
+    onFilter,
+  ]);
 
   return (
     <div className="filter-container">
+      {/* Year Filter */}
       <div className="filter_group">
         <label>Year</label>
         <select
           value={selectedYear}
           onChange={(e) => {
             setSelectedYear(e.target.value);
-            setselectedGenre("");
             setSelectedDirector("");
+            setSelectedGenre("");
             setTopN("");
           }}
         >
           <option value="">Filter by Year</option>
           {years.map((year) => (
-            <option key={year} value={year}>
+            <option key={`year-${year}`} value={year}>
               {year}
             </option>
           ))}
         </select>
       </div>
 
+      {/* Director Filter */}
       <div className="filter_group">
         <label>Director</label>
         <select
           value={selectedDirector}
           onChange={(e) => {
             setSelectedDirector(e.target.value);
-            setselectedGenre("");
             setSelectedYear("");
+            setSelectedGenre("");
             setTopN("");
           }}
         >
           <option value="">Filter by Director</option>
           {directors.map((dir) => (
-            <option key={dir} value={dir}>
+            <option key={`dir-${dir}`} value={dir}>
               {dir}
             </option>
           ))}
         </select>
       </div>
+
+      {/* Genre Filter */}
       <div className="filter_group">
         <label>Genre</label>
         <select
           value={selectedGenre}
           onChange={(e) => {
-            setselectedGenre(e.target.value);
-            setSelectedDirector("");
+            setSelectedGenre(e.target.value);
             setSelectedYear("");
+            setSelectedDirector("");
             setTopN("");
           }}
         >
           <option value="">Filter by Genre</option>
-          {genre.map((gen) => (
-            <option key={gen} value={gen}>
+          {genres.map((gen) => (
+            <option key={`genre-${gen}`} value={gen}>
               {gen}
             </option>
           ))}
         </select>
       </div>
+
       <div className="filter_group">
         <label>Top Movies</label>
         <select
@@ -125,7 +180,7 @@ const Filter = ({ onFilter }) => {
             setTopN(e.target.value);
             setSelectedYear("");
             setSelectedDirector("");
-            setselectedGenre("");
+            setSelectedGenre("");
           }}
         >
           <option value="">Top Movies</option>
@@ -135,10 +190,10 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
+      {/* Sort Filter */}
       <div className="filter_group">
         <label>Sort By</label>
         <select
-          className="filter-select"
           value={sortBy + "-" + sortOrder}
           onChange={(e) => {
             const [by, order] = e.target.value.split("-");
