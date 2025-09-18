@@ -15,7 +15,6 @@ const Filter = ({ onFilter }) => {
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
 
-  // Fetch all movies once
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -24,21 +23,18 @@ const Filter = ({ onFilter }) => {
         );
         const data = res.data.data || [];
         setMovies(data);
-        onFilter(data); // initialize filter list
+        onFilter(data);
 
-        // Extract unique years
         const uniqueYears = [...new Set(data.map((m) => m.year))].sort(
           (a, b) => b - a
         );
         setYears(uniqueYears);
 
-        // Extract unique directors
         const uniqueDirectors = [
           ...new Set(data.map((m) => m.director)),
         ].sort();
         setDirectors(uniqueDirectors);
 
-        // Extract unique genres safely
         const allGenres = data.flatMap((m) => {
           if (!m.genre) return [];
           if (Array.isArray(m.genre)) return m.genre;
@@ -54,7 +50,6 @@ const Filter = ({ onFilter }) => {
     fetchMovies();
   }, [onFilter]);
 
-  // Apply filters locally (no API call)
   useEffect(() => {
     if (!movies.length) return;
 
@@ -129,8 +124,6 @@ const Filter = ({ onFilter }) => {
           ))}
         </select>
       </div>
-
-      {/* Director Filter */}
       <div className="filter_group">
         <label>Director</label>
         <select
@@ -151,7 +144,6 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
-      {/* Genre Filter */}
       <div className="filter_group">
         <label>Genre</label>
         <select
@@ -190,7 +182,6 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
-      {/* Sort Filter */}
       <div className="filter_group">
         <label>Sort By</label>
         <select
