@@ -3,7 +3,7 @@ import "./Navbar.css";
 import MoviesSearcher from "../MoviesSearcher/MoviesSearcher";
 import Filter from "../Filter/Filter";
 
-const Navbar = ({ onSearch, onFilterChange }) => {
+const Navbar = ({ onSearch, onFilterChange, onCreate }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -18,17 +18,13 @@ const Navbar = ({ onSearch, onFilterChange }) => {
       }
     };
     fetchMovies();
-  }, []);
-
-  const handleCreateClick = () => {
-    window.dispatchEvent(new Event("openNewMovieForm"));
-  };
+  }, [onFilterChange]);
 
   return (
     <div>
       <div className="app_container">
         <MoviesSearcher onSearch={onSearch} />
-        <button onClick={handleCreateClick} className="Create">
+        <button onClick={onCreate} className="Create">
           Create
         </button>
       </div>

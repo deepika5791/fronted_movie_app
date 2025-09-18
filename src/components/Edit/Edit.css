@@ -6,6 +6,7 @@ form {
   padding: 30px;
   width: 500px;
 }
+
 .new-container {
   position: relative;
   right: 400px;
@@ -20,6 +21,7 @@ form {
   height: 50vh;
   overflow-y: scroll;
 }
+
 input {
   margin-left: 20px;
   border-radius: 10px;
@@ -27,6 +29,7 @@ input {
   font-size: 16px;
   margin-top: 20px;
 }
+
 .edit-from-input {
   font-size: 20px;
   margin: 30px 0px 0px 30px;
@@ -35,4 +38,43 @@ input {
 .btn {
   position: relative;
   right: 140px;
+}
+
+@media (max-width: 1156px) {
+  form {
+    margin-left: 0;
+    width: 100%;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .new-container {
+    position: relative;
+    transform: none;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    right: 0;
+    bottom: 60px;
+    overflow-y: visible;
+  }
+
+  input {
+    margin-left: 0;
+    font-size: 14px;
+    padding-left: 10px;
+  }
+
+  .edit-from-input {
+    font-size: 16px;
+    margin: 10px 0 0 0;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 130px;
+  }
 }

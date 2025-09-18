@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import "./AllMovies.css";
 import Delete from "../Delete/Delete";
 import Edit from "../Edit/Edit";
-import DeleteAllMovies from "../DeleteAllMovies/DeleteAllMovies";
-import NewMovie from "../../pages/NewMovie/NewMovie";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
 
@@ -13,7 +11,6 @@ const AllMovies = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [edit, setEditData] = useState(null);
-  const [showNewMovie, setShowNewMovie] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -32,17 +29,6 @@ const AllMovies = () => {
 
   useEffect(() => {
     fetchData();
-
-    const handleMoviesDeleted = () => setData([]);
-    window.addEventListener("moviesDeleted", handleMoviesDeleted);
-
-    const handleCreateMovie = () => setShowNewMovie(true);
-    window.addEventListener("openNewMovieForm", handleCreateMovie);
-
-    return () => {
-      window.removeEventListener("moviesDeleted", handleMoviesDeleted);
-      window.removeEventListener("openNewMovieForm", handleCreateMovie);
-    };
   }, [id]);
 
   const handleDelete = (id) => {
@@ -127,16 +113,6 @@ const AllMovies = () => {
           <div className="no_movie-found">
             <p className="No_movieData">No movies found.</p>
           </div>
-        )}
-        {showNewMovie && (
-          <li>
-            <NewMovie
-              onSuccess={() => {
-                setShowNewMovie(false);
-              }}
-              onCancel={() => setShowNewMovie(false)}
-            />
-          </li>
         )}
       </ul>
     </div>
