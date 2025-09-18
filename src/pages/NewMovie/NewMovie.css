@@ -89,20 +89,23 @@ input {
   }
 
   .submit {
-    margin-left: 5px;
-    width: 100%;
+    position: relative;
+    margin-left: 0px;
+    width: 200%;
     font-size: 16px;
     height: 45px;
   }
 
   .cancel {
-    width: 100%;
+    position: relative;
+    width: 200%;
     height: 45px;
     font-size: 14px;
-    margin-left: 5px;
   }
 
   .btn {
+    display: flex;
+    justify-content: center;
     flex-direction: column;
     gap: 10px;
   }
