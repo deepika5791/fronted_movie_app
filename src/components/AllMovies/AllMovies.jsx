@@ -28,7 +28,7 @@ const AllMovies = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);  
+      setLoading(false);
     }
   };
 
@@ -58,7 +58,7 @@ const AllMovies = () => {
   if (loading) {
     return (
       <div className="loader-container">
-        <img src={loader} alt="Loading..." className="loader" />
+        <img src={loader} className="loader" />
       </div>
     );
   }

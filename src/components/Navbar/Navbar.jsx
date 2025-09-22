@@ -4,8 +4,8 @@ import MoviesSearcher from "../MoviesSearcher/MoviesSearcher";
 import Filter from "../Filter/Filter";
 
 const Navbar = ({ onSearch, onFilterChange, onCreate }) => {
-  const [movies, setMovies] = useState([]); 
-  const [filteredMovies, setFilteredMovies] = useState([]); 
+  const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -20,7 +20,7 @@ const Navbar = ({ onSearch, onFilterChange, onCreate }) => {
         const data = await res.json();
         setMovies(data.data);
         setFilteredMovies(data.data);
-        onFilterChange(data.data); 
+        onFilterChange(data.data);
       } catch (err) {
         console.error(err);
         setError("Failed to load movies");
@@ -34,7 +34,6 @@ const Navbar = ({ onSearch, onFilterChange, onCreate }) => {
     fetchMovies();
   }, [onFilterChange]);
 
-
   useEffect(() => {
     onFilterChange(filteredMovies);
   }, [filteredMovies, onFilterChange]);
@@ -45,7 +44,7 @@ const Navbar = ({ onSearch, onFilterChange, onCreate }) => {
         <MoviesSearcher
           onSearch={(query) => {
             onSearch(query);
-          
+
             setFilteredMovies(
               movies.filter((m) =>
                 m.title.toLowerCase().includes(query.toLowerCase())
@@ -58,7 +57,7 @@ const Navbar = ({ onSearch, onFilterChange, onCreate }) => {
         </button>
       </div>
 
-      {loading && <p>Loading movies...</p>}
+      {/* {loading && <p>Loading movies...</p>} */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {!loading && !error && (

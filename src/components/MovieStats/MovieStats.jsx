@@ -68,7 +68,6 @@ const MovieStats = () => {
           <DeleteAllMovies />
         </div>
       </div>
-     
     </>
   );
 };

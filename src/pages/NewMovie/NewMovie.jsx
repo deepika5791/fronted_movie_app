@@ -42,7 +42,6 @@ const NewMovie = ({ onSuccess, onCancel }) => {
       );
       const newMovie = response.data.data || response.data;
 
-
       window.dispatchEvent(
         new CustomEvent("movieCreated", { detail: { movie: newMovie } })
       );
