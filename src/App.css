@@ -1,4 +1,4 @@
- .container {
+.container {
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -15,7 +15,6 @@
 
 .right {
   flex: 1;
-  
   overflow: hidden;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -49,5 +48,4 @@
   .right {
     width: 100%;
   }
-}  
-
+}
