@@ -6,13 +6,16 @@ import Delete from "../Delete/Delete";
 import Edit from "../Edit/Edit";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
+import loader from "../../assets/loader.gif";
 
 const AllMovies = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [edit, setEditData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const url = id
         ? `https://movieapi-1-txwt.onrender.com/movies/${id}`
@@ -24,6 +27,8 @@ const AllMovies = () => {
       setData(movies);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);  
     }
   };
 
@@ -49,6 +54,14 @@ const AllMovies = () => {
       </>
     );
   };
+
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <img src={loader} alt="Loading..." className="loader" />
+      </div>
+    );
+  }
 
   return (
     <div className="all_movie_container">

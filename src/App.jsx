@@ -12,6 +12,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [showNewMovie, setShowNewMovie] = useState(false);
+  const [leftLoading, setLeftLoading] = useState(true);
 
   return (
     <div>
@@ -22,18 +23,27 @@ const App = () => {
           onFilterChange={setFilteredMovies}
           onCreate={() => setShowNewMovie(true)}
         />
-
         <div className="container">
           <div className="left">
-            <MovieList searchQuery={searchQuery} movies={filteredMovies} />
+            <MovieList
+              searchQuery={searchQuery}
+              movies={filteredMovies}
+              onLoadingChange={setLeftLoading}
+            />
           </div>
           <div className="right">
             <Routes>
-              <Route
-                path="/"
-                element={<div className="placeholder">Select a movie</div>}
-              />
               <Route path="/movie/:id" element={<AllMovies />} />
+              <Route
+                path="*"
+                element={
+                  !leftLoading && (
+                    <div className="no-movie-selected">
+                      <p>Movie has not been selected.</p>
+                    </div>
+                  )
+                }
+              />
             </Routes>
           </div>
         </div>

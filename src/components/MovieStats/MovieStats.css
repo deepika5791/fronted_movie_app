@@ -28,7 +28,7 @@
   border-radius: 12px;
   list-style-type: none;
   transition: all 0.3s ease;
-  word-wrap: break-word; /* prevent overflow of text */
+  word-wrap: break-word;
 }
 
 .stats-label {
