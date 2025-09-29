@@ -3,13 +3,13 @@ import "./Delete.css";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
 
-const Delete = ({ _id, onDelete }) => {
+const Delete = ({ id, onDelete }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://movieapi-1-txwt.onrender.com/movies/${_id}`);
+      await axios.delete(`https://movieapi-1-txwt.onrender.com/movies/${id}`);
       onDelete(_id);
 
-      window.dispatchEvent(new CustomEvent("movieDeleted", { detail: { _id } }));
+      window.dispatchEvent(new CustomEvent("movieDeleted", { detail: { id } }));
     } catch (error) {
       console.log(error);
     }
