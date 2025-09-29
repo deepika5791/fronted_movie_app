@@ -8,8 +8,8 @@ const MovieStats = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const fetchStats = async () => {
-    setLoading(true);
+  const fetchStats = async (isInitial = false) => {
+    if (isInitial) setLoading(true);
     setError("");
     try {
       const response = await axios.get(
@@ -20,20 +20,28 @@ const MovieStats = () => {
       console.error(err);
       setError("Failed to fetch stats.");
     } finally {
-      setLoading(false);
+      if (isInitial) setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchStats();
+    fetchStats(true);
 
-    const handleMoviesDeleted = () => {
+    const handleMovieDeleted = () => {
+      fetchStats(false);
+    };
+
+    const handleAllDeleted = () => {
       setStats({ totalMovies: 0, averageRating: 0, maxDuration: 0 });
     };
 
-    window.addEventListener("moviesDeleted", handleMoviesDeleted);
-    return () =>
-      window.removeEventListener("moviesDeleted", handleMoviesDeleted);
+    window.addEventListener("movieDeleted", handleMovieDeleted);
+    window.addEventListener("moviesDeleted", handleAllDeleted);
+
+    return () => {
+      window.removeEventListener("movieDeleted", handleMovieDeleted);
+      window.removeEventListener("moviesDeleted", handleAllDeleted);
+    };
   }, []);
 
   if (loading) return <p>Loading stats...</p>;
@@ -41,34 +49,32 @@ const MovieStats = () => {
   if (!stats) return null;
 
   return (
-    <>
-      <div className="movie-stats">
-        <h2>Movie Statistics</h2>
-        <ul className="stats-grid">
-          <li className="stats-cards">
-            <div className="stats-value">{stats.totalMovies}</div>
-            <div className="stats-label">
-              <strong>Total Movies:</strong>
-            </div>
-          </li>
-          <li className="stats-cards">
-            <div className="stats-value">{stats.averageRating}</div>
-            <div className="stats-label">
-              <strong>Average Rating:</strong>
-            </div>
-          </li>
-          <li className="stats-cards">
-            <div className="stats-value">{stats.maxDuration}</div>
-            <div className="stats-label">
-              <strong>Longest Movie:</strong>
-            </div>
-          </li>
-        </ul>
-        <div className="delete-all-wrapper">
-          <DeleteAllMovies />
-        </div>
+    <div className="movie-stats">
+      <h2>Movie Statistics</h2>
+      <ul className="stats-grid">
+        <li className="stats-cards">
+          <div className="stats-value">{stats.totalMovies}</div>
+          <div className="stats-label">
+            <strong>Total Movies:</strong>
+          </div>
+        </li>
+        <li className="stats-cards">
+          <div className="stats-value">{stats.averageRating}</div>
+          <div className="stats-label">
+            <strong>Average Rating:</strong>
+          </div>
+        </li>
+        <li className="stats-cards">
+          <div className="stats-value">{stats.maxDuration}</div>
+          <div className="stats-label">
+            <strong>Longest Movie:</strong>
+          </div>
+        </li>
+      </ul>
+      <div className="delete-all-wrapper">
+        <DeleteAllMovies />
       </div>
-    </>
+    </div>
   );
 };
 

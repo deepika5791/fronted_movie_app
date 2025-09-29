@@ -22,7 +22,15 @@ const MovieList = ({ searchQuery, movies, onLoadingChange }) => {
 
     return () => clearTimeout(timer);
   }, [searchQuery, movies, onLoadingChange]);
+  useEffect(() => {
+    const handleMovieDeleted = (e) => {
+      const { id } = e.detail;
+      setfilteredData((prev) => prev.filter((movie) => movie._id !== id));
+    };
 
+    window.addEventListener("movieDeleted", handleMovieDeleted);
+    return () => window.removeEventListener("movieDeleted", handleMovieDeleted);
+  }, []);
   return (
     <div className="all_movie_containerr">
       {loading ? (
