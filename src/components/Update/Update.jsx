@@ -22,7 +22,7 @@ const Update = ({ movie, form, onSuccess }) => {
         fieldSets
       );
       setSuccess("Movie updated successfully!");
-      onSuccess(res.data);
+      onSuccess(res.data.data);
     } catch (err) {
       if (err.response) {
         setError(err.response.data.message);
