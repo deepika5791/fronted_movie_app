@@ -68,7 +68,7 @@ const AllMovies = () => {
       <ul className="all-data">
         {data.length > 0 ? (
           data.map((movie) => (
-            <li key={movie.id} className="movie_Data">
+            <li key={movie._id} className="movie_Data">
               {edit && edit._id === movie._id ? (
                 <Edit
                   movie={movie}
