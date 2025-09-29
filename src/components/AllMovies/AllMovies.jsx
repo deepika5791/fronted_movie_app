@@ -9,7 +9,7 @@ import { MdModeEdit } from "react-icons/md";
 import loader from "../../assets/loader.gif";
 
 const AllMovies = () => {
-  const { id } = useParams();
+  const { _id } = useParams();
   const [data, setData] = useState([]);
   const [edit, setEditData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,8 +17,8 @@ const AllMovies = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const url = id
-        ? `https://movieapi-1-txwt.onrender.com/movies/${id}`
+      const url = _id
+        ? `https://movieapi-1-txwt.onrender.com/movies/${_id}`
         : `https://movieapi-1-txwt.onrender.com/movies`;
       const response = await axios.get(url);
       const movies = Array.isArray(response.data.data)
@@ -34,10 +34,10 @@ const AllMovies = () => {
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, [_id]);
 
-  const handleDelete = (id) => {
-    setData((prev) => prev.filter((movie) => movie.id !== id));
+  const handleDelete = (_id) => {
+    setData((prev) => prev.filter((movie) => movie._id !== _id));
   };
 
   const renderStars = (rating) => {
@@ -69,7 +69,7 @@ const AllMovies = () => {
         {data.length > 0 ? (
           data.map((movie) => (
             <li key={movie.id} className="movie_Data">
-              {edit && edit.id === movie.id ? (
+              {edit && edit.id === movie._id ? (
                 <Edit
                   movie={movie}
                   onSuccess={(updatedMovie) => {
@@ -83,7 +83,7 @@ const AllMovies = () => {
                 />
               ) : (
                 <>
-                  <h4 className="movies_id">Id: {movie.id}</h4>
+                  <h4 className="movies_id">Id: {movie._id}</h4>
                   <h3 className="Movie_Title">Title: {movie.title}</h3>
 
                   <h4 className="Movie_Rating">
