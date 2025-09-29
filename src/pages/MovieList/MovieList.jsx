@@ -45,7 +45,6 @@ const MovieList = ({ searchQuery, movies, onLoadingChange }) => {
                           to={`/movie/${movie._id}`}
                           style={{ textDecoration: "none" }}
                         >
-                          <h3>id: {movie._id}</h3>
                           <h3 className="movie_title_list">{movie.title}</h3>
                         </NavLink>
                       </td>

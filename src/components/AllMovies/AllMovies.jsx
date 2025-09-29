@@ -68,14 +68,14 @@ const AllMovies = () => {
       <ul className="all-data">
         {data.length > 0 ? (
           data.map((movie) => (
-            <li key={movie.id} className="movie_Data">
-              {edit && edit.id === movie._id ? (
+            <li key={movie._id} className="movie_Data">
+              {edit && edit._id === movie._id ? (
                 <Edit
                   movie={movie}
                   onSuccess={(updatedMovie) => {
                     setData((prev) =>
                       prev.map((m) =>
-                        m.id === updatedMovie.id ? updatedMovie : m
+                        m._id === updatedMovie._id ? updatedMovie : m
                       )
                     );
                     setEditData(null);
@@ -116,7 +116,7 @@ const AllMovies = () => {
                     <button onClick={() => setEditData(movie)} className="Edit">
                       <MdModeEdit /> Edit
                     </button>
-                    <Delete id={movie.id} onDelete={handleDelete} />
+                    <Delete id={movie._id} onDelete={handleDelete} />
                   </div>
                 </>
               )}
