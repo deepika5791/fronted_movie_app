@@ -33,7 +33,7 @@ const MovieList = ({ searchQuery, movies, onLoadingChange }) => {
         <ul className="all-dataa">
           {filteredData.length > 0 ? (
             filteredData.map((movie) => (
-              <li key={movie.id} className="single">
+              <li key={movie._id} className="single">
                 <table>
                   <tbody>
                     <tr>
