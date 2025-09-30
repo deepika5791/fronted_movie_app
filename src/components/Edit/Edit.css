@@ -76,6 +76,7 @@ form {
   border: none;
   color: white;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 @media (max-width: 1156px) {
