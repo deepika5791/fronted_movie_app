@@ -9,8 +9,8 @@ form {
 
 .new-container {
   position: relative;
-  right: 400px;
-  bottom: 220px;
+  right: 380px;
+  bottom: 260px;
   transform: translate(-50%, 30%);
   background-color: white;
   box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
@@ -20,24 +20,62 @@ form {
   width: 200%;
   height: 50vh;
   overflow-y: scroll;
+  border: 1px solid black;
 }
 
-input {
-  margin-left: 20px;
-  border-radius: 10px;
-  padding-left: 13px;
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.form-group.title-group {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-group label {
+  width: 120px;
+  font-weight: bold;
   font-size: 16px;
+  margin-top: 2px;
+}
+
+.form-group.title-group label {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 10px 13px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-right: 120px;
+}
+
+.Cancel_Movie {
+  background-color: #c5111f;
+  width: 180px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 25px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  border: none;
+  color: white;
   margin-top: 20px;
-}
-
-.edit-from-input {
-  font-size: 20px;
-  margin: 30px 0px 0px 30px;
-}
-
-.btn {
-  position: relative;
-  right: 140px;
 }
 
 @media (max-width: 1156px) {
@@ -53,28 +91,35 @@ input {
     position: relative;
     transform: none;
     width: 100%;
-    height: auto;
+    height: 60vh;
     padding: 20px;
     right: 0;
-    bottom: 60px;
-    overflow-y: visible;
+    bottom: 0;
+    overflow-y: auto;
   }
 
-  input {
-    margin-left: 0;
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-group label {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .form-group input {
+    width: 100%;
     font-size: 14px;
     padding-left: 10px;
   }
 
-  .edit-from-input {
-    font-size: 16px;
-    margin: 10px 0 0 0;
+  .btn-group {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 130px;
+  .Cancel_Movie {
+    margin-left: 150px;
   }
 }

@@ -110,6 +110,10 @@ const AllMovies = () => {
                       <div className="Movie_labels">Director</div>
                       <h5 className="box">{movie.director}</h5>
                     </div>
+                    <div className="movie-item">
+                      <div className="Movie_labels">Duration</div>
+                      <h5 className="box">{movie.duration}</h5>
+                    </div>
                   </div>
 
                   <div className="movie-buttons">
