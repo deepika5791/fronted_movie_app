@@ -25,16 +25,26 @@ const Filter = ({ onFilter }) => {
         setMovies(data);
         onFilter(data);
 
+        // Unique Years
         const uniqueYears = [...new Set(data.map((m) => m.year))].sort(
           (a, b) => b - a
         );
         setYears(uniqueYears);
 
-        const uniqueDirectors = [
-          ...new Set(data.map((m) => m.director)),
-        ].sort();
-        setDirectors(uniqueDirectors);
+        // Unique Directors
+        const allDirectors = data
+          .map((m) => {
+            if (!m.director) return null;
+            if (Array.isArray(m.director)) return m.director;
+            if (typeof m.director === "string") return m.director.split(",");
+            return null;
+          })
+          .flat()
+          .map((d) => d.trim())
+          .filter(Boolean);
+        setDirectors([...new Set(allDirectors)].sort());
 
+        // Unique Genres
         const allGenres = data.flatMap((m) => {
           if (!m.genre) return [];
           if (Array.isArray(m.genre)) return m.genre;
@@ -61,7 +71,13 @@ const Filter = ({ onFilter }) => {
       );
     }
     if (selectedDirector) {
-      filtered = filtered.filter((m) => m.director === selectedDirector);
+      filtered = filtered.filter((m) => {
+        if (!m.director) return false;
+        const dirs = Array.isArray(m.director)
+          ? m.director
+          : m.director.split(",").map((d) => d.trim());
+        return dirs.includes(selectedDirector);
+      });
     }
     if (selectedGenre) {
       filtered = filtered.filter((m) => {
@@ -124,6 +140,8 @@ const Filter = ({ onFilter }) => {
           ))}
         </select>
       </div>
+
+      {/* Director Filter */}
       <div className="filter_group">
         <label>Director</label>
         <select
@@ -144,6 +162,7 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
+      {/* Genre Filter */}
       <div className="filter_group">
         <label>Genre</label>
         <select
@@ -164,6 +183,7 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
+      {/* Top Movies */}
       <div className="filter_group">
         <label>Top Movies</label>
         <select
@@ -182,6 +202,7 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
+      {/* Sort By */}
       <div className="filter_group">
         <label>Sort By</label>
         <select
