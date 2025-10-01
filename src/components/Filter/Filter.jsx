@@ -35,7 +35,6 @@ const Filter = ({ onFilter }) => {
 
       let movies = res.data.data || [];
 
-      // ✅ Frontend only handles Top N
       if (topN) {
         movies = [...movies]
           .sort((a, b) => b.rating - a.rating)
@@ -44,7 +43,6 @@ const Filter = ({ onFilter }) => {
 
       onFilter(movies);
 
-      // Build dropdown options dynamically
       if (!years.length || !directors.length || !genres.length) {
         const allYears = [...new Set(movies.map((m) => m.year))].sort(
           (a, b) => b - a
@@ -75,7 +73,6 @@ const Filter = ({ onFilter }) => {
 
   return (
     <div className="filter-container">
-      {/* Year Filter */}
       <div className="filter_group">
         <label>Year</label>
         <select
@@ -96,7 +93,6 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
-      {/* Director Filter */}
       <div className="filter_group">
         <label>Director</label>
         <select
@@ -117,7 +113,6 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
-      {/* Genre Filter */}
       <div className="filter_group">
         <label>Genre</label>
         <select
@@ -138,7 +133,6 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
-      {/* Top Movies */}
       <div className="filter_group">
         <label>Top Movies</label>
         <select
@@ -157,7 +151,6 @@ const Filter = ({ onFilter }) => {
         </select>
       </div>
 
-      {/* Sort By */}
       <div className="filter_group">
         <label>Sort By</label>
         <select
